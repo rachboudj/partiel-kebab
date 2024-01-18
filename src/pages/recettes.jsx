@@ -17,15 +17,21 @@ export default function recettes() {
     };
 
     return (
-        <div>
+        <div className='recette'>
             <h2>Nos recettes</h2>
-            {recettes.map((recette, index) => (
-                <div key={index}>
-                    <h3>{recette.nom}</h3>
-                    <p>{recette.ingredients}</p>
-                    <button onClick={() => supprimerRecette(index)}>Supprimer</button>
-                </div>
-            ))}
+            <div className="container-recette">
+                {recettes.map((recette, index) => (
+                    <div className='card-recette' key={index}>
+                        <h3>{recette.nom}</h3>
+                        <p>{recette.ingredients}</p>
+                        <div className="btn-recette">
+                            <button className='btn'>Commander</button>
+                            <button className='btn-suppr' onClick={() => supprimerRecette(index)}>Supprimer</button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
         </div>
     );
 }
