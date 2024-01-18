@@ -1,0 +1,26 @@
+.creerRecette {
+    padding: 0 2em;
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-top: 2em;
+        }
+
+        input {
+            margin-top: 1em;
+            padding-bottom: 1em;
+            border: none;
+            border-bottom: 2px solid $textBtn1;
+            outline: none;
+            font-family: $font;
+        }
+
+        button {
+            margin-top: 2em;
+        }
+    }
+}
+
