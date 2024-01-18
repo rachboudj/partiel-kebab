@@ -34,15 +34,15 @@ export default function cuisine() {
     };
 
     return (
-        <div>
-            <h2>Commandes en cuisine</h2>
+        <div className='cuisine'>
+            <h2>Commandes à faire</h2>
             {commandes.map((commande, index) => (
-                <div key={index}>
+                <div className='card-commande' key={index}>
                     <h3>{commande.nom}</h3>
                     <p>Ingrédients: {commande.ingredients}</p>
                     <p>Sauce: {commande.sauce}</p>
                     <p>Temps de commande: {calculerTemps(commande.tempsCommande)}</p>
-                    <button onClick={() => validerCommande(index)}>Valider la commande</button>
+                    <button className='btn' onClick={() => validerCommande(index)}>Valider la commande</button>
                 </div>
             ))}
         </div>
