@@ -15,6 +15,9 @@ export default function creationRecette() {
 
         console.log('La recette :', recette);
 
+        const recettesExistantes = JSON.parse(localStorage.getItem('recettes')) || [];
+        localStorage.setItem('recettes', JSON.stringify([...recettesExistantes, recette]));
+
         setNomRecette('');
         setIngredients('');
     };
