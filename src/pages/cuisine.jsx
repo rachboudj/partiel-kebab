@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 export default function cuisine() {
     const [commandes, setCommandes] = useState([]);
+    const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
         const commandesExistantes = JSON.parse(localStorage.getItem('commandes')) || [];
@@ -14,8 +15,16 @@ export default function cuisine() {
         const diff = maintenant - debut;
         const minutes = Math.floor(diff / 60000);
         const secondes = Math.floor((diff % 60000) / 1000);
-        return `${minutes.toString().padStart(2, '0')}m${secondes.toString().padStart(2, '0')}s`;
+        return `${minutes.toString().padStart(2, '0')}m ${secondes.toString().padStart(2, '0')}s`;
     };
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+    
+        return () => clearInterval(intervalId);
+    }, []);
 
     const validerCommande = (index) => {
         let nouvellesCommandes = [...commandes];
