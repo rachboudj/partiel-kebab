@@ -31,8 +31,23 @@ export default function recettes() {
     };
 
     const validerCommande = async () => {
-        console.log('Commande validée:', recetteSelect, sauceSelect);
+        try {
+            const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Paris');
+            const data = await response.json();
+            const commande = {
+                ...recetteSelect,
+                sauce: sauceSelect,
+                tempsCommande: data.datetime
+            };
+    
+            const commandesExistantes = JSON.parse(localStorage.getItem('commandes')) || [];
+            localStorage.setItem('commandes', JSON.stringify([...commandesExistantes, commande]));
+
+        console.log('Commande validée:', commande);
         fermerSauce();
+    } catch (error) {
+        console.error('Erreur lors de la récupération de l’heure', error);
+    }
     };
 
     return (
