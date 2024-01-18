@@ -1,4 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url(./Header.scss);
+@import url(./Recettes.scss);
+@import url(./creationRecette.scss);
+
+li {
+    list-style-type: none;
+}
+
+button {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: $font;
+    border: none;
+    background-color: transparent;
+}
+
+.btn {
+    background-color: $textBtn1;
+    color: $textBtn2;
+    border: 2px solid $textBtn1;
+    padding: 1em;
+    margin-top: 10px;
+    margin-right: 10px;
+
+    &:hover {
+        border: 2px solid $textBtn1;
+        background-color: $textBtn2;
+        color: $textBtn1;
+    }
+}
+
+.btn-suppr {
+    background-color: $error;
+    color: $textBtn2;
+    border: 2px solid $error;
+    padding: 1em;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: $textBtn2;
+        color: $error;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $textBtn1;
+    font-weight: 500;
+    font-family: $font;
+    cursor: pointer;
+}
+
+.sucess-message {
+    margin-bottom: 2em;
+    padding: 1em;
+    background-color: $sucess;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        width: max-content;
+        text-transform: uppercase;
+        border-bottom: 2px solid $textBtn1;
+        margin-top: 10px;
+    }
+}
 
 * {
     margin: 0;
@@ -6,6 +74,10 @@
     box-sizing: border-box;
     
     body {
-        font-family: "Poppins", sans-serif;
+        font-family: $font;
+
+        .content {
+            margin-top: 2em;
+        }
     }
 }
