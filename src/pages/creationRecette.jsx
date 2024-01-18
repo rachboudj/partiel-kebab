@@ -1,10 +1,13 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function creationRecette() {
     const [nomRecette, setNomRecette] = useState('');
     const [ingredients, setIngredients] = useState('');
+    const [recetteAjoutee, setRecetteAjoutee] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,36 +23,45 @@ export default function creationRecette() {
 
         setNomRecette('');
         setIngredients('');
+        setRecetteAjoutee(true);
     };
 
+    useEffect(() => {
+        if (nomRecette || ingredients) {
+            setRecetteAjoutee(false);
+        }
+    }, [nomRecette, ingredients]);
 
+    const handleRedirection = () => {
+        navigate('/');
+    };
 
-return (
-
-
-    <div>
-        <h2>Créer une nouvelle recette</h2>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Nom de la recette:</label>
+    return (
+        <div className='creerRecette'>
+            {recetteAjoutee && (
+                <div className='sucess-message'>
+                    <p>La recette a bien été ajoutée!</p>
+                    <button onClick={handleRedirection}>Voir les recettes</button>
+                </div>
+            )}
+            <h2>Créer une nouvelle recette</h2>
+            <form onSubmit={handleSubmit}>
+                <label>Nom de la recette</label>
                 <input
                     type="text"
                     value={nomRecette}
                     onChange={(e) => setNomRecette(e.target.value)}
                     required
                 />
-            </div>
-            <div>
-                <label>Ingrédients (séparés par une virgule):</label>
+                <label>Ingrédients</label>
                 <input
                     type="text"
                     value={ingredients}
                     onChange={(e) => setIngredients(e.target.value)}
                     required
                 />
-            </div>
-            <button type="submit">Ajouter la recette</button>
-        </form>
-    </div>
-)
-    }
+                <button className='btn' type="submit">Ajouter la recette</button>
+            </form>
+        </div>
+    )
+}
